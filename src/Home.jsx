@@ -4,6 +4,7 @@ import { PostNew } from "./PostNew";
 import { PostIndex } from "./PostIndex";
 import { Modal } from "./Modal";
 import { SignupNew } from "./SignupNew";
+import { Login } from "./Login";
 
 export function Home() {
   const [posts, setPosts] = useState([]);
@@ -31,6 +32,7 @@ export function Home() {
   return (
     <div>
       <SignupNew />
+      <Login />
       <PostNew />
       <PostIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
