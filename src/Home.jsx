@@ -11,6 +11,19 @@ export function Home() {
   const [posts, setPosts] = useState([]);
   const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
   const [currentPost, setCurrentPost] = useState([]);
+  const [errors, setErrors] = useState([]);
+
+  const handleCreatePost = (params) => {
+    axios
+      .post("http://localhost:3000/posts.json", params)
+      .then((response) => {
+        setPosts([...posts, response.data]); // posts.push(response.data)
+      })
+      .catch((error) => {
+        console.log(error.response.data.errors);
+        setErrors(error.response.data.errors);
+      });
+  };
 
   let handleIndexPosts = () => {
     axios.get("http://localhost:3000/posts.json").then((response) => {
@@ -35,7 +48,7 @@ export function Home() {
       <Signup />
       <Login />
       <LogoutLink />
-      <PostNew />
+      <PostNew onCreatePost={handleCreatePost} errors={errors} />
       <PostIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
         <p>{currentPost.body}</p>
