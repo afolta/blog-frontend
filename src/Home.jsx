@@ -3,8 +3,9 @@ import axios from "axios";
 import { PostNew } from "./PostNew";
 import { PostIndex } from "./PostIndex";
 import { Modal } from "./Modal";
-import { SignupNew } from "./SignupNew";
+import { Signup } from "./Signup";
 import { Login } from "./Login";
+import { LogoutLink } from "./LogoutLink";
 
 export function Home() {
   const [posts, setPosts] = useState([]);
@@ -31,8 +32,9 @@ export function Home() {
 
   return (
     <div>
-      <SignupNew />
+      <Signup />
       <Login />
+      <LogoutLink />
       <PostNew />
       <PostIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
